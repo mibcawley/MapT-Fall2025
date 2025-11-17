@@ -5,7 +5,7 @@
 #ifndef MAPT_H
 #define MAPT_H
 
-#include <forward_list>
+#include <forward_list> // STL link list
 
 using namespace std;
 
@@ -15,6 +15,7 @@ template<class K, class T>
 class MapT {
 public:
     MapT();
+    MapT(int numBucks);
 
     void Add(K key, T value);
     void Remove(K key);
@@ -25,6 +26,7 @@ public:
     void Rehash(int numBuckets);
 
     T operator[](K key);
+    MapT& operator=(MapT const &other);
 
     int Size() { return numKeys; }
 
@@ -36,7 +38,7 @@ private:
     int numBuckets;
     int numKeys;
 
-    double maxLoad;
+    double maxLoad; // used to determine when to rehash
 
 
     // Short Version:
@@ -52,7 +54,7 @@ private:
     int currBucket;
 
 
-    int GetHashIndex(const K& key);
+    int GetHashIndex(const K& key);  // Hash function
 };
 
 
